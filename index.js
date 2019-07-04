@@ -167,17 +167,17 @@ process.on('SIGINT', () => {
   }
 });
 
-button_test_seq = [0, 1, 2, 3, 1, 2, 0, 3, 2];
-i = 0;
-iv = setInterval(function() {
-  if (i >= button_test_seq.length) {
-    buttons[button_test_seq[i - 1]].enabled = false;
-    clearInterval(iv);
-    return;
-  }
-  if (i > 0) {
-    buttons[button_test_seq[i - 1]].enabled = false;
-  }
-  buttons[button_test_seq[i]].enabled = true;
-  i++;
-}, 200);
+// button_test_seq = [0, 1, 2, 3, 1, 2, 0, 3, 2];
+// i = 0;
+// iv = setInterval(function() {
+//   if (i >= button_test_seq.length) {
+//     buttons[button_test_seq[i - 1]].enabled = false;
+//     clearInterval(iv);
+//     return;
+//   }
+//   if (i > 0) {
+//     buttons[button_test_seq[i - 1]].enabled = false;
+//   }
+//   buttons[button_test_seq[i]].enabled = true;
+//   i++;
+// }, 200);

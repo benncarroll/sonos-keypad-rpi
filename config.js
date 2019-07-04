@@ -1,7 +1,7 @@
 /* jshint esversion:6 */
 
 // gpio pins of buttons, minimum 2 buttons
-button_pin_arr = [12, 13, 14, 15]; // RPi.GPIO.BCM based
+button_pin_arr = [23, 22, 17, 18]; // RPi.GPIO.BCM based
 pressed_state = 1;
 buttons = [];
 
