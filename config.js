@@ -23,37 +23,3 @@ loggingConfig = {
   infoEnabled: true,
   successEnabled: true
 }; //errors always on as only triggered when termination required
-
-// top level is array for each button, if element in arr
-// is another array then it will 'open' second menu.
-// pressing a button on the keypad w/ buttons [0,1,2,3] will
-// trigger its respective array element in `menus`
-// when it reaches a function it will run.
-// any other datatype will crash.
-// no more elements per array than buttons provided
-menus = [
-  function() {
-    console.log('toggle main light');
-  },
-  function() {
-    console.log('toggle lamp');
-  },
-  function() {
-    console.log('play :) on speaker');
-  },
-  // set fan speeds
-  [
-    function() {
-      console.log('set fan 1');
-    },
-    function() {
-      console.log('set fan 2');
-    },
-    function() {
-      console.log('set fan 3');
-    },
-    function() {
-      console.log('set fan off');
-    }
-  ]
-];

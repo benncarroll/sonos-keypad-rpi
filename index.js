@@ -1,13 +1,11 @@
 /* jshint esversion:6 */
 
-console.log('import onoff...');
 const Gpio = require('onoff').Gpio;
-console.log('import debounce...');
 var debounce = require('lodash.debounce');
-console.log('import utils...');
 const utils = require('./utils.js');
-console.log('import config...\n');
+const menus = require('./menus.js').menus;
 require('./config.js');
+
 
 unlocked = false;
 current_code = '';
@@ -118,13 +116,16 @@ function buttonPress(value) {
     current_menu = menus[value];
     utils.logInfo('Entered sub-menu in pos', value);
     ledController('green', 1, 100); //short flash for entering menu
-  } else {
+  } else if (typeof current_menu[value] == 'function') {
     current_menu[value]();
     utils.logInfo('Executed action in pos', value);
     current_menu = menus;
     utils.logInfo('Returned to main menu.\n');
 
     ledController('green', 1, 200); //long flash for executing action
+  } else {
+    current_menu = menus;
+    ledController('red', 1, 200); //long flash for unidentified func
   }
 
 
