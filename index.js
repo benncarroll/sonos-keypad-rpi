@@ -1,14 +1,13 @@
 /* jshint esversion:6 */
 
+console.log('import onoff...');
 const Gpio = require('onoff').Gpio;
+console.log('import debounce...');
 var debounce = require('lodash.debounce');
-
+console.log('import utils...');
 const utils = require('./utils.js');
+console.log('import config...\n');
 require('./config.js');
-
-
-console.log();
-utils.logInfo('Starting up');
 
 unlocked = false;
 current_code = '';
@@ -79,17 +78,18 @@ function ledController(colour, times, length = 200, wait = undefined) {
 function lockKeypad(do_lock_light = true, extra_message = undefined) {
   utils.callLogger('lockKeypad', arguments);
 
-  if (extra_message) {
-    utils.logInfo(extra_message, 'Keypad locked.');
-  } else {
-    utils.logInfo('Keypad locked.');
-  }
+  if (unlocked) {
+    if (extra_message) {
+      utils.logInfo(extra_message, 'Keypad locked.');
+    } else {
+      utils.logInfo('Keypad locked.');
+    }
 
-  if (do_lock_light) {
-    ledController('red', 1, 1000);
+    if (do_lock_light) {
+      ledController('red', 1, 1000);
+    }
+    unlocked = false;
   }
-
-  unlocked = false;
   current_code = '';
 }
 inactivityLock = debounce(lockKeypad, relock_timer * 1000);
@@ -176,17 +176,5 @@ process.on('SIGINT', () => {
   }
 });
 
-// button_test_seq = [0, 1, 2, 3, 1, 2, 0, 3, 2];
-// i = 0;
-// iv = setInterval(function() {
-//   if (i >= button_test_seq.length) {
-//     buttons[button_test_seq[i - 1]].enabled = false;
-//     clearInterval(iv);
-//     return;
-//   }
-//   if (i > 0) {
-//     buttons[button_test_seq[i - 1]].enabled = false;
-//   }
-//   buttons[button_test_seq[i]].enabled = true;
-//   i++;
-// }, 200);
+utils.logInfo('Ready!');
+ledController('green', 3, 200);
