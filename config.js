@@ -1,5 +1,7 @@
 /* jshint esversion:6 */
 
+const chalk = require('chalk');
+
 // gpio pins of buttons, minimum 2 buttons
 button_pin_arr = [23, 22, 17, 18]; // RPi.GPIO.BCM based
 pressed_state = 1;
@@ -40,6 +42,9 @@ menus = [
   },
   function() {
     console.log('play :) on speaker');
+
+    console.log(chalk.green.redBg('WASSSSSUUPPPP'));
+
   },
   // set fan speeds
   [
