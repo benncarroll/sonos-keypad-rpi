@@ -55,11 +55,13 @@ function ledController(colour, times, length = 200, wait = 400) {
       if (err) {
         throw err;
       }
-      setTimeout(led.write(0, err => { // Asynchronous write
-        if (err) {
-          throw err;
-        }
-      }), length);
+      setTimeout(function () {
+        led.write(0, err => { // Asynchronous write
+          if (err) {
+            throw err;
+          }
+        });
+      }, length);
     });
   };
 
@@ -102,7 +104,7 @@ function buttonPress(value) {
         ledController('red', 2, 50, 50);
         lockKeypad(false, 'Incorrect Code.');
       }
-      
+
       inactivityLock();
       return;
     }
