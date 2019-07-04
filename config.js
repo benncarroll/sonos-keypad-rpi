@@ -9,7 +9,7 @@ buttons = [];
 // has been entered.
 // if led_pin is defined then it will flash to signify unlocked
 lock_code_enabled = true;
-lock_code = "012312"; // 0-based
+lock_code = "1212"; // 0-based
 relock_timer = 10; // seconds
 
 green_led_pin = 24; // RPi.GPIO.BCM not board
