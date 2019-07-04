@@ -28,7 +28,7 @@ if (button_count <= 1) {
   utils.checkArrayLengths(menus, button_count);
 }
 
-function ledController(colour, times, length = 200, wait = 400) {
+function ledController(colour, times, length = 200, wait = undefined) {
   utils.callLogger('ledController', arguments);
   switch (colour) {
     case 'red':
@@ -50,12 +50,16 @@ function ledController(colour, times, length = 200, wait = 400) {
     'red': redLed
   } [colour];
 
+  if (wait == undefined) {
+    wait = length * 2;
+  }
+
   const blinkLed = () => {
     led.write(1, err => { // Asynchronous write
       if (err) {
         throw err;
       }
-      setTimeout(function () {
+      setTimeout(function() {
         led.write(0, err => { // Asynchronous write
           if (err) {
             throw err;
@@ -99,9 +103,9 @@ function buttonPress(value) {
       if (current_code == lock_code) {
         utils.logSuccess('Keypad unlocked.');
         unlocked = true;
-        ledController('green', 2, 50, 50);
+        ledController('green', 2, 100);
       } else if (current_code.length >= lock_code.length) {
-        ledController('red', 2, 50, 50);
+        ledController('red', 2, 100, 100);
         lockKeypad(false, 'Incorrect Code.');
       }
 
@@ -119,6 +123,7 @@ function buttonPress(value) {
     current_menu = menus;
     utils.logInfo('Returned to main menu.\n');
   }
+  ledController('green', 1, 200);
 
   inactivityLock();
 }
