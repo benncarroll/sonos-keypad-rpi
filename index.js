@@ -51,7 +51,7 @@ function ledController(colour, times, length = 200, wait = undefined) {
   } [colour];
 
   if (wait == undefined) {
-    wait = length * 2;
+    wait = length * 1.5;
   }
 
   const blinkLed = () => {
@@ -72,7 +72,7 @@ function ledController(colour, times, length = 200, wait = undefined) {
   for (var i = 0; i < times; i++) {
     setTimeout(function() {
       blinkLed();
-    }, (times + 1) * wait);
+    }, i * wait);
   }
 }
 
@@ -103,9 +103,9 @@ function buttonPress(value) {
       if (current_code == lock_code) {
         utils.logSuccess('Keypad unlocked.');
         unlocked = true;
-        ledController('green', 2, 100);
+        ledController('green', 2, 200);
       } else if (current_code.length >= lock_code.length) {
-        ledController('red', 2, 100, 100);
+        ledController('red', 2, 200);
         lockKeypad(false, 'Incorrect Code.');
       }
 
