@@ -2,7 +2,7 @@ print()
 import button_controller, utils as u
 
 # gpio pins of buttons, minimum 2 buttons
-button_pin_arr = [12, 13, 14, 15] # RPi.GPIO.BOARD based
+button_pin_arr = [12, 13, 14, 15] # RPi.GPIO.BCM based
 pressed_state = 1
 
 # if enabled menus will only be accessible after `lock_code`
@@ -10,7 +10,7 @@ pressed_state = 1
 # if led_pin is defined then it will flash to signify unlocked
 lock_code_enabled = True
 lock_code = 1231 # 0-based
-led_pin = None # RPi.GPIO.BOARD based not BCM
+led_pin = None # RPi.GPIO.BCM not board
 
 reverse_keypad = False # reverse mapping of buttons (0123 -> 3210)
 
@@ -22,7 +22,7 @@ reverse_keypad = False # reverse mapping of buttons (0123 -> 3210)
 # any other datatype will crash.
 # no more elements per array than buttons provided
 menus = [
-    
+
 ]
 
 # verify menus arr
