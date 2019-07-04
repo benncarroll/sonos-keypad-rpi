@@ -12,8 +12,8 @@ lock_code_enabled = true;
 lock_code = "012312"; // 0-based
 relock_timer = 10; // seconds
 
-green_led_pin = undefined; // RPi.GPIO.BCM not board
-red_led_pin = undefined;
+green_led_pin = 24; // RPi.GPIO.BCM not board
+red_led_pin = 27;
 
 reverse_keypad = false; // reverse mapping of buttons (0123 -> 3210)
 
