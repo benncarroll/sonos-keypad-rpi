@@ -102,6 +102,8 @@ function buttonPress(value) {
         ledController('red', 2, 50, 50);
         lockKeypad(false, 'Incorrect Code.');
       }
+      
+      inactivityLock();
       return;
     }
   }
