@@ -117,13 +117,16 @@ function buttonPress(value) {
   if (Array.isArray(current_menu[value])) {
     current_menu = menus[value];
     utils.logInfo('Entered sub-menu in pos', value);
+    ledController('green', 1, 100); //short flash for entering menu
   } else {
     current_menu[value]();
     utils.logInfo('Executed action in pos', value);
     current_menu = menus;
     utils.logInfo('Returned to main menu.\n');
+
+    ledController('green', 1, 200); //long flash for executing action
   }
-  ledController('green', 1, 200);
+
 
   inactivityLock();
 }
