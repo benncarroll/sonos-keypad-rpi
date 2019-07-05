@@ -3,17 +3,6 @@
 const chalk = require('chalk');
 require('./configs/general.js');
 
-global.timeouts = []; //global timeout id arrays
-global.setTimeout = function(code, number) {
-  this.timeouts.push(setTimeout(code, number));
-};
-global.clearAllTimeouts = function() {
-  for (var i = 0; i < this.timeouts.length; i++) {
-    window.clearTimeout(this.timeouts[i]); // clear all the timeouts
-  }
-  this.timeouts = []; //empty the id array
-};
-
 // For todays date;
 Date.prototype.today = function() {
   return ((this.getDate() < 10) ? "0" : "") + this.getDate() + "/" + (((this.getMonth() + 1) < 10) ? "0" : "") + (this.getMonth() + 1) + "/" + this.getFullYear();
