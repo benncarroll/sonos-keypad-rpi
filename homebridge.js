@@ -26,9 +26,9 @@ function setupHAP() {
     )
     .catch((e) => {
       if (e.statusCode === 401) {
-        this.logger.warn(`Homebridge must be running in insecure mode to view and control accessories from this plugin.`);
+        utils.logWarn(`Homebridge must be running in insecure mode to view and control accessories from this plugin.`);
       } else {
-        this.logger.error(`Failed load accessories from Homebridge: ${e.message}`);
+        utils.logWarn(`Failed load accessories from Homebridge: ${e.message}`);
       }
       return [];
     });
@@ -40,7 +40,8 @@ reloadServices = debounce(() => services.forEach(
 
 exports.setChar = function(name, char, value) {
   if (!hapReady) {
-    utils.doWarnLog('HAP not ready yet.');
+    utils.logWarn('HAP not ready yet.');
+    return;
   }
 
   if (Array.isArray(name)) {

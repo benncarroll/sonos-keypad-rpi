@@ -1,7 +1,8 @@
 /* jshint esversion:6 */
 
 const Gpio = require('onoff').Gpio;
-var debounce = require('lodash.debounce');
+const debounce = require('lodash.debounce');
+const throttle = require('lodash.throttle');
 const utils = require('./utils.js');
 const menus = require('./configs/menus.js').menus;
 require('./configs/general.js');
@@ -13,6 +14,7 @@ current_menu = menus;
 
 button_count = button_pin_arr.length;
 
+button_process_queue = [];
 
 // setup LEDs
 redLed = (Gpio.accessible && red_led_pin != undefined) ? new Gpio(red_led_pin, 'out') : undefined;
@@ -92,8 +94,14 @@ function lockKeypad(do_lock_light = true, extra_message = undefined) {
 }
 inactivityLock = debounce(lockKeypad, relock_timer * 1000);
 
-function buttonPress(value) {
-  utils.callLogger('buttonPress', arguments);
+function processButtonQueue() {
+  utils.callLogger('processButtonQueue', arguments);
+
+  if (button_process_queue.length == 0) {
+    return;
+  }
+
+  value = button_process_queue.shift();
 
   if (reverse_keypad) {
     value = button_count - 1 - value;
@@ -132,7 +140,15 @@ function buttonPress(value) {
     ledController('red', 1, 200); //long flash for unidentified func
   }
 
+  if (button_process_queue.length > 0) {
+    processButtonQueue();
+  }
+}
+processQueue = throttle(processButtonQueue, 50);
 
+function buttonPress(value) {
+  utils.callLogger('buttonPress', arguments);
+  button_process_queue.push(value);
   inactivityLock();
 }
 
