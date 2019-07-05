@@ -95,6 +95,10 @@ inactivityLock = debounce(lockKeypad, relock_timer * 1000);
 function buttonPress(value) {
   utils.callLogger('buttonPress', arguments);
 
+  if (reverse_keypad) {
+    value = button_count - 1 - value;
+  }
+
   if (lock_code_enabled) {
     if (!unlocked) {
       current_code += value.toString();
