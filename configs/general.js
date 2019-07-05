@@ -9,7 +9,7 @@ reverse_keypad = false; // reverse mapping of buttons (0123 -> 3210)
 // if enabled menus will only be accessible after `lock_code`
 // has been entered.
 // if led_pin is defined then it will flash to signify unlocked
-lock_code_enabled = true;
+lock_code_enabled = false;
 lock_code = "1212"; // 0-based
 relock_timer = 10; // seconds
 

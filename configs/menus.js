@@ -1,6 +1,6 @@
 /* jshint esversion:6 */
 
-const setChar = require('../homebridge.js').setChar;
+const setDeviceChar = require('../homebridge.js').setChar;
 
 // top level is array for each button, if element in arr
 // is another array then it will 'open' second menu.
@@ -13,32 +13,27 @@ exports.menus = [
   // lights
   [
     () => {
-      console.log('toggle main light');
+      setDeviceChar("Ben's Bedside Lamp", 'On', 'toggle');
     },
     () => {
-      setChar("Ben's Bedside Lamp", 'On', 'toggle');
+      setDeviceChar(["Ben's Room Light", "Ben's Room Fan"], 'On', true);
     },
     () => {
-      setChar(["Ben's Room Light", "Ben's Room Fan"], 'On', true);
-    },
-    () => {
-      setChar(["Ben's Room Light", "Ben's Room Fan"], 'On', false);
+      setDeviceChar(["Ben's Room Light", "Ben's Room Fan"], 'On', false);
     }
   ],
   // playlists
   [
     () => {
-      console.log('play :) on speaker');
+      console.log('play Oldies on speaker');
     },
     () => {
-      console.log('play Oldies on speaker');
+      console.log('play :) on speaker');
     },
     () => {
       console.log('play relative rarity on speaker');
     },
-    () => {
-      console.log('play something on speaker.');
-    }
+    undefined
   ],
   // set fan speeds
   [
@@ -56,18 +51,5 @@ exports.menus = [
     }
   ],
   // sonos control
-  [
-    () => {
-      console.log('dr + kitchen; ben\'s room');
-    },
-    () => {
-      console.log('all together');
-    },
-    () => {
-      console.log('all solo');
-    },
-    () => {
-      console.log('pause all');
-    }
-  ]
+  undefined
 ];

@@ -3,18 +3,17 @@
 const chalk = require('chalk');
 require('./configs/general.js');
 
-// global = {
-//   timeouts: [], //global timeout id arrays
-//   setTimeout: function(code, number) {
-//     this.timeouts.push(setTimeout(code, number));
-//   },
-//   clearAllTimeouts: function() {
-//     for (var i = 0; i < this.timeouts.length; i++) {
-//       window.clearTimeout(this.timeouts[i]); // clear all the timeouts
-//     }
-//     this.timeouts = []; //empty the id array
-//   }
-// };
+global.timeouts = []; //global timeout id arrays
+global.setTimeout = function(code, number) {
+  this.timeouts.push(setTimeout(code, number));
+};
+global.clearAllTimeouts = function() {
+  for (var i = 0; i < this.timeouts.length; i++) {
+    window.clearTimeout(this.timeouts[i]); // clear all the timeouts
+  }
+  this.timeouts = []; //empty the id array
+}
+};
 
 // For todays date;
 Date.prototype.today = function() {
@@ -100,7 +99,7 @@ exports.logError = function() {
   exports.baseLog(1, arguments);
   process.exit(1);
 };
-exports.logWarn = function () {
+exports.logWarn = function() {
   if (loggingConfig.warningEnabled) {
     exports.baseLog(2, arguments);
   }
