@@ -146,11 +146,18 @@ function processButtonQueue() {
 }
 processQueue = throttle(processButtonQueue, 50);
 
+liftMenuLevel = debounce(() => {
+  current_menu = menus;
+}, 1000);
+
 function buttonPress(value) {
   utils.callLogger('buttonPress', arguments);
+
+  liftMenuLevel();
+  inactivityLock();
+
   button_process_queue.push(value);
   processQueue();
-  inactivityLock();
 }
 
 function regButton(pin, index) {
