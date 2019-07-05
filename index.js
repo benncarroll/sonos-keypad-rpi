@@ -3,8 +3,8 @@
 const Gpio = require('onoff').Gpio;
 var debounce = require('lodash.debounce');
 const utils = require('./utils.js');
-const menus = require('./menus.js').menus;
-require('./config.js');
+const menus = require('./configs/menus.js').menus;
+require('./configs/general.js');
 
 
 unlocked = false;
@@ -99,7 +99,7 @@ function buttonPress(value) {
     if (!unlocked) {
       current_code += value.toString();
       if (current_code == lock_code) {
-        utils.logSuccess('Keypad unlocked.');
+        utils.logInfo('Keypad unlocked.');
         unlocked = true;
         ledController('green', 2, 200);
       } else if (current_code.length >= lock_code.length) {

@@ -1,20 +1,20 @@
 /* jshint esversion:6 */
 
 const chalk = require('chalk');
-require('./config.js');
+require('./configs/general.js');
 
-global = {
-  timeouts: [], //global timeout id arrays
-  setTimeout: function(code, number) {
-    this.timeouts.push(setTimeout(code, number));
-  },
-  clearAllTimeouts: function() {
-    for (var i = 0; i < this.timeouts.length; i++) {
-      window.clearTimeout(this.timeouts[i]); // clear all the timeouts
-    }
-    this.timeouts = []; //empty the id array
-  }
-};
+// global = {
+//   timeouts: [], //global timeout id arrays
+//   setTimeout: function(code, number) {
+//     this.timeouts.push(setTimeout(code, number));
+//   },
+//   clearAllTimeouts: function() {
+//     for (var i = 0; i < this.timeouts.length; i++) {
+//       window.clearTimeout(this.timeouts[i]); // clear all the timeouts
+//     }
+//     this.timeouts = []; //empty the id array
+//   }
+// };
 
 // For todays date;
 Date.prototype.today = function() {
@@ -49,7 +49,7 @@ exports.checkArrayLengths = function(array, max_length, current_depth = 0) {
       }
     }
   }
-  exports.logSuccess('Menus array verified.');
+  exports.logInfo('Menus array verified.');
 };
 
 function stringConcat(total, current) {
@@ -69,13 +69,13 @@ exports.baseLog = function(prefix, args) {
 
   switch (prefix) {
     case 1:
-      prefixText = chalk.black.bgGreen('SUCCESS');
-      break;
-    case 2:
       prefixText = chalk.black.bgRed('ERROR');
       break;
+    case 2:
+      prefixText = chalk.black.bgYellow('WARN');
+      break;
     case 3:
-      prefixText = chalk.black.bgYellow('CALL');
+      prefixText = chalk.black.bgCyan('CALL');
       break;
     case 0:
     default:
@@ -96,14 +96,14 @@ exports.logInfo = function() {
     exports.baseLog(0, arguments);
   }
 };
-exports.logSuccess = function() {
-  if (loggingConfig.successEnabled) {
-    exports.baseLog(1, arguments);
-  }
-};
 exports.logError = function() {
-  exports.baseLog(2, arguments);
+  exports.baseLog(1, arguments);
   process.exit(1);
+};
+exports.logWarn = function () {
+  if (loggingConfig.warningEnabled) {
+    exports.baseLog(2, arguments);
+  }
 };
 exports.logCall = function() {
   if (loggingConfig.callTracingEnabled) {

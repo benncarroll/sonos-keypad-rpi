@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/benncarroll/sonos-keypad-rpi#readme",
   "dependencies": {
+    "@oznu/hap-client": "^0.0.9",
     "chalk": "^2.4.2",
     "lodash.debounce": "^4.0.8",
+    "lodash.throttle": "^4.1.1",
     "onoff": "^4.1.2",
     "sonos": "^1.12.0"
   }
