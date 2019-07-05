@@ -10,7 +10,9 @@ require('./configs/general.js');
 
 unlocked = false;
 current_code = '';
+
 current_menu = menus;
+current_menu_depth = 0;
 
 button_count = button_pin_arr.length;
 
@@ -126,17 +128,20 @@ function processButtonQueue() {
 
   if (Array.isArray(current_menu[value])) {
     current_menu = menus[value];
+    current_menu_depth++;
     utils.logInfo('Entered sub-menu in pos', value);
     ledController('green', 1, 100); //short flash for entering menu
   } else if (typeof current_menu[value] == 'function') {
     current_menu[value]();
     utils.logInfo('Executed action in pos', value);
     current_menu = menus;
+    current_menu_depth = 0;
     utils.logInfo('Returned to main menu.\n');
 
     ledController('green', 1, 200); //long flash for executing action
   } else {
     current_menu = menus;
+    current_menu_depth = 0;
     ledController('red', 1, 200); //long flash for unidentified func
   }
 
@@ -147,9 +152,12 @@ function processButtonQueue() {
 processQueue = throttle(processButtonQueue, 50);
 
 liftMenuLevel = debounce(() => {
-  utils.logCall('liftMenuLevel', arguments);
-  utils.logInfo('Gave up, returned to main menu.\n');
-  current_menu = menus;
+  if (current_menu_depth != 0) {
+    utils.logCall('liftMenuLevel', arguments);
+    utils.logInfo('Gave up, returned to main menu.\n');
+    current_menu = menus;
+    current_menu_depth = 0;
+  }
 }, 1000);
 
 function buttonPress(value) {
