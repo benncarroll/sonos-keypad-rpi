@@ -149,6 +149,7 @@ processQueue = throttle(processButtonQueue, 50);
 function buttonPress(value) {
   utils.callLogger('buttonPress', arguments);
   button_process_queue.push(value);
+  processQueue();
   inactivityLock();
 }
 
