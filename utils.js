@@ -12,7 +12,6 @@ global.clearAllTimeouts = function() {
     window.clearTimeout(this.timeouts[i]); // clear all the timeouts
   }
   this.timeouts = []; //empty the id array
-}
 };
 
 // For todays date;
