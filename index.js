@@ -147,6 +147,8 @@ function processButtonQueue() {
 processQueue = throttle(processButtonQueue, 50);
 
 liftMenuLevel = debounce(() => {
+  utils.logCall('liftMenuLevel', arguments);
+  utils.logInfo('Gave up, returned to main menu.\n');
   current_menu = menus;
 }, 1000);
 
