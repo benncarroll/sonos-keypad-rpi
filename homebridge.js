@@ -50,6 +50,10 @@ exports.setChar = function(name, char, value) {
     service = services.find(x => x.serviceName == name);
   }
 
+  if (loggingConfig.serviceDebug) {
+    console.log(service);
+  }
+
   char = service.serviceCharacteristics.find(x => x.type == char);
   if (value == 'toggle') {
     value = !char.value;

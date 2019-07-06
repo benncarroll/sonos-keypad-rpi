@@ -13,6 +13,12 @@ exports.menus = [
   // lights
   [
     () => {
+      setDeviceChar("Ben's Bedside Lamp", 'On', false);
+      setTimeout(function() {
+        setDeviceChar("Ben's Bedside Lamp", 'On', true);
+      }, 200);
+    },
+    () => {
       setDeviceChar("Ben's Bedside Lamp", 'On', 'toggle');
     },
     () => {
@@ -38,7 +44,8 @@ exports.menus = [
   // set fan speeds
   [
     () => {
-      console.log('set fan 1');
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'Speed', 25);
+      // console.log('set fan 1');
     },
     () => {
       console.log('set fan 2');

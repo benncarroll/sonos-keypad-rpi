@@ -153,7 +153,7 @@ processQueue = throttle(processButtonQueue, 50);
 
 liftMenuLevel = debounce(() => {
   if (current_menu_depth != 0) {
-    utils.logCall('liftMenuLevel', arguments);
+    utils.logCall('liftMenuLevel', current_menu_depth);
     utils.logInfo('Gave up, returned to main menu.\n');
     current_menu = menus;
     current_menu_depth = 0;
