@@ -44,17 +44,19 @@ exports.menus = [
   // set fan speeds
   [
     () => {
-      setDeviceChar(["Fan", "Ben's Room Fan"], 'Speed', 25);
-      // console.log('set fan 1');
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 25);
     },
     () => {
-      console.log('set fan 2');
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 50);
     },
     () => {
-      console.log('set fan 3');
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 100);
     },
     () => {
-      console.log('set fan off');
+      setDeviceChar(["Fan", "Ben's Room Fan"], 'On', false);
     }
   ],
   // sonos control
