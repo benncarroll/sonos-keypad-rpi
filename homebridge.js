@@ -11,6 +11,7 @@ let services;
 let hapReady = false;
 
 function setupHAP() {
+  utils.logCall('setupHAP', arguments);
   hapClient = new HapClient(
     `http://${homebridge.address}:${homebridge.port}`,
     homebridge.pin
@@ -39,6 +40,7 @@ reloadServices = debounce(() => services.forEach(
 ), 1500);
 
 exports.setChar = function(name, char, value) {
+  utils.logCall('setChar', arguments);
   if (!hapReady) {
     utils.logWarn('HAP not ready yet.');
     return;
