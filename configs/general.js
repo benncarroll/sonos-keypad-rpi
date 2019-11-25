@@ -18,7 +18,7 @@ red_led_pin = 23;
 
 // pretty self explanatory
 loggingConfig = {
-  callTracingEnabled: true,
+  callTracingEnabled: false,
   infoEnabled: true,
   serviceDebug: false
 }; //errors always on as only triggered when termination required

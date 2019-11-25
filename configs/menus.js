@@ -36,19 +36,23 @@ exports.menus = [
   // playlists
   [
     () => {
-      console.log('play Oldies on speaker');
+      // Oldies
+      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:7AiplnKGh73F3v5jjvX8Z4')
     },
     () => {
-      console.log('play :) on speaker');
+      // :)
+      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:0m0v1WUyo2ynubEVMP8GRV')
     },
     () => {
-      console.log('play relative rarity on speaker');
+      // relative rarity
+      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:4AjPcEDETubOAoCFiyu9AR')
     },
     () => {
-      console.log('play 80s rock on speaker');
+      // 80s Rock Anthems
+      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:37i9dQZF1DX1spT6G94GFC')
     }
   ],
@@ -57,17 +61,17 @@ exports.menus = [
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 25);
-      sonos.say('Fan to 25%')
+      sonos.say('Fan to 25 percent.')
     },
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 50);
-      sonos.say('Fan to 50%')
+      sonos.say('Fan to 50 percent.')
     },
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 100);
-      sonos.say('Fan to 100%')
+      sonos.say('Fan to 100 percent.')
     },
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', false);
