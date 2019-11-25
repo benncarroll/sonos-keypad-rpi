@@ -63,7 +63,7 @@ exports.setChar = function(name, char, value) {
   }
   service.setCharacteristic(char.iid, value);
 
-  reloadServices();
+  // reloadServices();
 };
 
 setupHAP();
