@@ -27,14 +27,11 @@ exports.playClip = function(clipName, volume) {
 
 
 exports.playSpotifyURI = function(uri, shuffle = true, volume) {
-  if (volume) {
-    request([config.address, config.speakerName, "volume", volume].join("/"))
-  }
-  if (uri.includes('playlist')) {
-    uri = 'spotify:user:' + uri
-  }
-  if (shuffle) {
-    request([config.address, config.speakerName, "shuffle", "on"].join("/"))
-  }
+
+  if (volume) request([config.address, config.speakerName, "volume", volume].join("/"))
+  if (uri.includes('playlist')) uri = 'spotify:user:' + uri
+  if (shuffle) request([config.address, config.speakerName, "shuffle", "on"].join("/"))
+
+  request([config.address, config.speakerName, "clearqueue"].join("/"))
   request([config.address, config.speakerName, "spotify", "now", uri].join("/"))
 }
