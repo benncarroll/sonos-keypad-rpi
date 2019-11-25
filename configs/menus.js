@@ -18,41 +18,37 @@ exports.menus = [
       setTimeout(function() {
         setDeviceChar("Ben's Bedside Lamp", 'On', true);
       }, 300);
-      sonos.say('Changing brightness.')
+      // sonos.say('Changing brightness.')
     },
     () => {
       setDeviceChar("Ben's Bedside Lamp", 'On', 'toggle');
-      sonos.say('Toggling light.')
+      // sonos.say('Toggling light.')
     },
     () => {
       setDeviceChar(["Ben's Room Light", "Ben's Room Fan"], 'On', true);
-      sonos.say('Turning lights on.')
+      // sonos.say('Turning lights on.')
     },
     () => {
       setDeviceChar(["Ben's Room Light", "Ben's Room Fan"], 'On', false);
-      sonos.say('Turning lights off.')
+      // sonos.say('Turning lights off.')
     }
   ],
   // playlists
   [
     () => {
       // Oldies
-      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:7AiplnKGh73F3v5jjvX8Z4')
     },
     () => {
       // :)
-      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:0m0v1WUyo2ynubEVMP8GRV')
     },
     () => {
       // relative rarity
-      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:4AjPcEDETubOAoCFiyu9AR')
     },
     () => {
       // 80s Rock Anthems
-      sonos.say('Playing music, shuffled.')
       sonos.playSpotifyURI('spotify:playlist:37i9dQZF1DX1spT6G94GFC')
     }
   ],
@@ -61,24 +57,37 @@ exports.menus = [
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 25);
-      sonos.say('Fan to 25 percent.')
+      // sonos.say('Fan on 25 percent.')
     },
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 50);
-      sonos.say('Fan to 50 percent.')
+      // sonos.say('Fan on 50 percent.')
     },
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', true);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 100);
-      sonos.say('Fan to 100 percent.')
+      // sonos.say('Fan on 100 percent.')
     },
     () => {
       setDeviceChar(["Fan", "Ben's Room Fan"], 'On', false);
       setDeviceChar(["Fan", "Ben's Room Fan"], 'RotationSpeed', 0);
-      sonos.say('Turning fan off.')
+      // sonos.say('Turning fan off.')
     }
   ],
   // sonos control
-  undefined
+  [
+    () => {
+      sonos.say('Fuck you.')
+    },
+    () => {
+      sonos.say('42. The answer to life, the universe, and everything.')
+    },
+    () => {
+      sonos.say('Get the fuck out.')
+    },
+    () => {
+      sonos.say('Stop pressing random buttons you imbecile.')
+    }
+  ]
 ];
